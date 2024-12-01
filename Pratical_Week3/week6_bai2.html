@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" type="text/javascript"></script>
+    <title>Document</title>
+</head>
+<body align="center">
+    <h1>ỨNG DỤNG ĐIỀU KHIỂN LED <br>
+        TỪ XA QUA MẠNG</h1>
+    <img src="on.png" class="anh"  width="125px">
+</body>
+<script>
+$(document).ready(function() {
+    var anh_bat ="on.png";
+    var anh_tat = "off.png";
+
+    client = new Paho.MQTT.Client("broker.emqx.io", Number(8083), "clientId");
+
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+
+    client.connect({
+        onSuccess:onConnect,
+        userName: "huuthocse",
+        password: "12345678"
+    });
+
+    function onConnect() {
+        console.log("onConnect");
+        client.subscribe("VLUTE/LED");
+        $('.anh').click(function() {
+            let anhht = $('.anh').attr('src');
+            if (anhht == anh_bat) {
+                $('.anh').attr('src', anh_tat);
+                let message = new Paho.MQTT.Message("off");
+                message.destinationName = "VLUTE/LED";
+                client.send(message);
+            } else {
+                $('.anh').attr('src', anh_bat);
+                let message = new Paho.MQTT.Message("on");
+                message.destinationName = "VLUTE/LED";
+                client.send(message);
+            }
+        });
+    }
+
+    function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+        console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+    }
+
+    function onMessageArrived(message) {
+    console.log("onMessageArrived:"+message.payloadString);
+    }
+});
+</script>
+</html>

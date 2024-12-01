@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ỨNG DỤNG QUẢN LÝ MÀN HÌNH THÔNG BÁO THÔNG MINH</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <form onsubmit="sendMessage(); return false;" align="center">
+        <h1 align="center">ỨNG DỤNG QUẢN LÝ MÀN HÌNH THÔNG BÁO THÔNG MINH</h1>
+        <label for="message">Nhập nội dung cần hiển thị (Tiếng Việt không dấu)</label> <br>
+        <textarea id="message" rows="3" style="width: 100%;"></textarea> <br>
+        <input type="submit" value="Gửi">
+    </form>
+
+    <script>
+        // Thiết lập kết nối MQTT
+        var client = new Paho.MQTT.Client("broker.emqx.io", Number(8083), "client-web-" + Math.random());
+        
+        client.onConnectionLost = function(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("Connection lost: " + responseObject.errorMessage);
+            }
+        };
+        
+        client.connect({
+            onSuccess: function() {
+                console.log("Connected to MQTT broker");
+            },
+            onFailure: function(e) {
+                console.log("Connection failed: " + e.errorMessage);
+            }
+        });
+
+        function sendMessage() {
+            // Lấy nội dung từ textarea
+            var messageContent = document.getElementById("message").value;
+            if (messageContent.trim() === "") {
+                alert("Vui lòng nhập nội dung cần hiển thị!");
+                return;
+            }
+
+            // Tạo tin nhắn MQTT
+            var message = new Paho.MQTT.Message(messageContent);
+            message.destinationName = "VLUTE/LCD";
+
+            // Gửi tin nhắn
+            client.send(message);
+            console.log("Message sent: " + messageContent);
+            alert("Nội dung đã được gửi!");
+
+            // Xóa nội dung trong textarea sau khi gửi
+            document.getElementById("message").value = "";
+        }
+    </script>
+</body>
+</html>
