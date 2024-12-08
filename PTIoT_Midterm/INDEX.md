@@ -107,4 +107,4 @@ Bài tập 2: Làm ESP32, nhấp nháy 1s đèn chân số 5
 - [https://wokwi.com/makers/huuthocse](https://wokwi.com/makers/huuthocse)
 - [https://wokwi.com/makers/levokhanhduy24](https://wokwi.com/makers/levokhanhduy24)
 - [https://wokwi.com/makers/khanhduytran2012](https://wokwi.com/makers/khanhduytran2012)
-- [https://wokwi.com/makers/minhtriho](https://wokwi.com/makers/minhtriho)
+- [https://wokwi.com/makers/minhtri27](https://wokwi.com/makers/minhtri27)
