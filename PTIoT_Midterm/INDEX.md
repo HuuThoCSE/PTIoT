@@ -1,25 +1,27 @@
-# Kiến thức
+# <span style='color: red;'>Kiến thức</span>
 
-# Delay
+## <span style='color: blue;'>Delay</span>
 1000ms = 1 giây
 
-## Led
+## <span style='color: blue;'>Led</span>
 Chân thẳng đi ra GND
 Chân công từ resistor (điện trở) đi vào (chân nâu) đi ra (chân vàng)
 
 Chân tín hiệu: 4, 5, 18, 19
 
-## LCD
+## <span style='color: blue;'>LCD</span>
 - SDA (Chân 21 - ESP32)
 - SCL (Chân 22 - ESP32)
 
-# MQTT
+## <span style='color: blue;'>DHT</span>
+
+## <span style='color: blue;'>MQTT</span>
 MQTTX nó vẫn sử dụng được port của web
 
-## Tạo mã ngẫu nhiên
+## <span style='color: blue;'>Tạo mã ngẫu nhiên</span>
 - [https://www.guidgen.com/](https://www.guidgen.com/)
 
-# Danh sách bài tập theo tuần
+# <span style='color: red;'>Danh sách bài tập theo tuần</span>
 - Tuần 5: 
     - Đèn giao thông. [https://wokwi.com/projects/414786022723445761](https://wokwi.com/projects/414786022723445761)
 
