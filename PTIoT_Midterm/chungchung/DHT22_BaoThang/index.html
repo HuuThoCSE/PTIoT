@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giám sát</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+    <h1>Theo dõi nhiệt độ và độ ẩm</h1>
+    <div id="dataDisplay">Đang chờ dữ liệu...</div>
+    <div id="averageTempDisplay">Đang chờ dữ liệu trung bình...</div>
+    <div id="alertDisplay">Đang chờ cảnh báo...</div>
+    <div style="width: 1000px; height: 200px;">
+        <canvas id="temperatureChart"></canvas>
+    </div>
+
+    <script>
+        const client = mqtt.connect("ws://broker.emqx.io:8083/mqtt");
+
+        client.on("connect", function () {
+            console.log("Connected to MQTT broker");
+            client.subscribe("IoT/display");
+            client.subscribe("IoT/data");
+            client.subscribe("IoT/avgTemp");
+        });
+
+        let temperatureData = [];
+        let humidityData = [];
+        let chartLabels = [];
+        const maxDataPoints = 50; // Giới hạn số điểm dữ liệu
+
+        const ctx = document.getElementById('temperatureChart').getContext('2d');
+        const temperatureChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Temperature',
+                    data: temperatureData,
+                    borderColor: 'red',
+                    borderWidth: 1
+                }, {
+                    label: 'Humidity',
+                    data: humidityData,
+                    borderColor: 'blue',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        client.on("message", function (topic, message) {
+            console.log("Received message:", message.toString());
+            if (topic === "IoT/display") {
+                document.getElementById("alertDisplay").innerHTML =
+                    "Alert: " + message.toString();
+            } else if (topic === "IoT/data") {
+                const [temperature, humidity] = message.toString().split("|");
+
+                if (chartLabels.length >= maxDataPoints) {
+                    chartLabels.shift();
+                    temperatureData.shift();
+                    humidityData.shift();
+                }
+
+                chartLabels.push(new Date().toLocaleTimeString());
+                temperatureData.push(parseFloat(temperature));
+                humidityData.push(parseFloat(humidity));
+
+                temperatureChart.update();
+            }
+            else if (topic == "IoT/avgTemp"){
+                document.getElementById("averageTempDisplay").innerHTML = "Average Temp: " + message.toString() + "°C";
+            }
+        });
+    </script>
+</body>
+</html>

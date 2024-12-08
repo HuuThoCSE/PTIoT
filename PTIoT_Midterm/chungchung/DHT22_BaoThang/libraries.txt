@@ -1,0 +1,6 @@
+# Wokwi Library List
+# See https://docs.wokwi.com/guides/libraries
+
+LiquidCrystal I2C
+PubSubClient
+DHT sensor library for ESPx

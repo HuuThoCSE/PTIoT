@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+    <button type="submit" id="onBtn">On</button>
+    <button type="submit" id="offBtn">Off</button>
+
+    <script>
+        // Kết nối tới MQTT broker
+        const client = mqtt.connect('ws://broker.emqx.io:8083/mqtt');
+
+        client.on('connect', function () {
+            console.log('Connected to MQTT broker');
+        });
+
+        document.getElementById('onBtn').addEventListener('click', function() {
+            client.publish('IoT/display', 'on');
+            console.log('Sent ON message');
+        });
+
+        document.getElementById('offBtn').addEventListener('click', function() {
+            client.publish('IoT/display', 'off');
+            console.log('Sent OFF message');
+        });
+    </script>
+</body>
+</html>

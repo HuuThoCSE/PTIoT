@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "author": "Thắng Bảo",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -177.56, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -95.7, "left": -34.2, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": 54.4, "left": 44, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 121.2,
+      "left": -53.8,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v-38.4", "h-163.2" ] ],
+    [ "dht1:SDA", "esp:15", "green", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-115.2", "v-28.8" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h0" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-115.2", "v-9.3" ] ],
+    [ "led1:A", "esp:4", "green", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
