@@ -1,27 +1,61 @@
-# <span style='color: red;'>Kiến thức</span>
+# Kiến thức
 
-## <span style='color: blue;'>Delay</span>
+## Delay
 1000ms = 1 giây
 
-## <span style='color: blue;'>Led</span>
+## Led
 Chân thẳng đi ra GND
 Chân công từ resistor (điện trở) đi vào (chân nâu) đi ra (chân vàng)
 
 Chân tín hiệu: 4, 5, 18, 19
 
-## <span style='color: blue;'>LCD</span>
+## LCD
 - SDA (Chân 21 - ESP32)
 - SCL (Chân 22 - ESP32)
 
-## <span style='color: blue;'>DHT</span>
+## DHT
+- pin (SDA): 15
+- Libary: DHT sensor library for ESPx
 
-## <span style='color: blue;'>MQTT</span>
+```cpp
+#include "DHTesp.h"
+
+const int DHT_PIN = 15;
+DHTesp dhtSensor;
+
+void setup() {
+    dhtSensor.setup(DHT_PIN, DHTesp::DHT22);
+}
+
+void loop() {
+    // Đọc dữ liệu từ cảm biến DHT22
+    float humidity = dhtSensor.getHumidity();
+    float temperature = dhtSensor.getTemperature();
+
+    // Kiểm tra dữ liệu có hợp lệ không
+    if (isnan(humidity) || isnan(temperature)) {
+        Serial.println("Failed to read from DHT sensor!");
+        return;
+    }
+    
+    //Thực hiện tính trung bình
+    // Cập nhật mảng và số lượng đọc hợp lệ
+    if (!isnan(temperatures[readIndex])) {
+        // Nếu giá trị cũ là hợp lệ, giảm số lượng đọc hợp lệ
+        numValidReadings--;
+    }
+}
+
+```
+
+# MQTT
 MQTTX nó vẫn sử dụng được port của web
 
-## <span style='color: blue;'>Tạo mã ngẫu nhiên</span>
+## Tạo mã ngẫu nhiên
 - [https://www.guidgen.com/](https://www.guidgen.com/)
 
-# <span style='color: red;'>Danh sách bài tập theo tuần</span>
+
+# Danh sách bài tập theo tuần
 - Tuần 5: 
     - Đèn giao thông. [https://wokwi.com/projects/414786022723445761](https://wokwi.com/projects/414786022723445761)
 

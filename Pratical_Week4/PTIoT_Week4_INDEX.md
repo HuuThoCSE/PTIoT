@@ -1,4 +1,4 @@
-Bài 1: Xây dựng ứng dụng giám sát nhiệt độ/độ ẩm thông minh thông qua WIFI theo các yêu cầu sau:
+# Bài 1: Xây dựng ứng dụng giám sát nhiệt độ/độ ẩm thông minh thông qua WIFI theo các yêu cầu sau:
 ✅a. ESP32 kết nối với DHT22 truy xuất thông tin nhiệt độ và độ ẩm ?
 ✅b. ESP32 kết nối với MQTT để gửi thông tin nhiệt độ và độ ẩm về ứng dụng WEB ?
 ✅c. Thiết kết giao diện WEB tĩnh để hiển thị nhiệt độ/độ ẩm theo thời gian thực ?
@@ -313,7 +313,7 @@ void loop() {
 ```
 
 
-Bài 2: Xây dựng ứng dụng "Bảng thông báo thông minh" theo các yêu cầu sau:
+# Bài 2: Xây dựng ứng dụng "Bảng thông báo thông minh" theo các yêu cầu sau:
 - a. ESP32 kết nối với màn hình LCD 20x4?
 - b. ESP32 kết nối với MQTT nhận dữ liệu từ ứng dụng WEB chứa nội dung cần hiển thị ?
 - c. ESP32 hiển thị dữ liệu nhận từ MQTT và hiển thị lên màn hình LCD, nếu dữ liệu quá dài thì tự động scroll ?
