@@ -19,6 +19,9 @@ MQTTX nó vẫn sử dụng được port của web
 ## Tạo mã ngẫu nhiên
 - [https://www.guidgen.com/](https://www.guidgen.com/)
 
+# Danh sách bài tập theo tuần
+- Tuần 5: 
+    - Đèn giao thông. [https://wokwi.com/projects/414786022723445761](https://wokwi.com/projects/414786022723445761)
 
 # Danh sách Bài tập
 ## Bài tập LED
