@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Led</title>
+</head>
+<body>
+    <div class="container">
+        <div class="group">
+            <h2>Thời gian đèn xanh bật (đơn vị giây)</h2>
+            <input type="number" id="led1">
+        </div>
+    
+        <div class="group">
+            <h2>Thời gian đèn vàng bật (đơn vị giây)</h2>
+            <input type="number" id="led2">
+        </div>
+    
+        <div class="group">
+            <h2>Thời gian đèn đỏ bật (đơn vị giây)</h2>
+            <input type="number" id="led3">
+        </div>
+
+        <button type="submit" id="btnLed" style="background-color: red; color: white; width:100px; margin-top:50px;">Lưu</button>
+
+        <div id="statusMessage" style="margin-top: 50px ;"></div>
+    </div>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script>
+        const client = mqtt.connect('ws://broker.emqx.io:8083/mqtt');
+
+        client.on('connect', function() {
+            console.log('Connected to MQTT broker');
+        });
+
+        document.getElementById('btnLed').addEventListener('click', function() {
+            let led1 = document.getElementById('led1').value || 0;
+            let led2 = document.getElementById('led2').value || 0;
+            let led3 = document.getElementById('led3').value || 0;
+
+            let mess = `${led1};${led2};${led3}`;
+            client.publish('IoT/leds',mess);
+
+            document.getElementById('statusMessage').innerHTML = 'Thao tác thành công';
+        });
+    </script>
+</body>
+</html>

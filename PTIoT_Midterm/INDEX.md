@@ -5,7 +5,7 @@
 
 ## Led
 Chân thẳng đi ra GND
-Chân công từ restor đi vào (chân nâu) đi ra (chân vàng)
+Chân công từ resistor (điện trở) đi vào (chân nâu) đi ra (chân vàng)
 
 Chân tín hiệu: 4, 5, 18, 19
 
@@ -32,5 +32,8 @@ Bài tập 2: Làm ESP32, nhấp nháy 1s đèn chân số 5
 
 - Bài tập FreeRTOS 2 (baitap_freertos_bai_2):
     - Đấu nối thêm nút nhấn D vào bo mạch, khi nhấn nút D thực hiện bật/tắt LED 1 và LED 2 xen kẽ nhau (LED 1 bật thì LED 2 tắt và ngược lại)?
+
+- Bài tập FreeRTOS Queue 1 (baitap_freertos_queue_bai_1):
+    - 
 
 ## Bài tập MQTT
