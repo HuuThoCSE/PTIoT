@@ -26,8 +26,11 @@ Bài tập 1: Làm ESP32 sáng đèn chân số 5
 Bài tập 2: Làm ESP32, nhấp nháy 1s đèn chân số 5
 
 ## Bài tập FreeRTOS
-- Bài tập MQTT 1(baitap_mqtt_bai_1): Nhấp nháy đèn 18, 19 bằng RTOS 
+- Bài tập FreeRTOS 1 (baitap_freertos_bai_1): 
+    - Nhấp nháy đèn 18, 19 bằng RTOS 
     - [https://wokwi.com/projects/416666374253425665](https://wokwi.com/projects/416666374253425665)
 
-## Bài tập MQTT
+- Bài tập FreeRTOS 2 (baitap_freertos_bai_2):
+    - Đấu nối thêm nút nhấn D vào bo mạch, khi nhấn nút D thực hiện bật/tắt LED 1 và LED 2 xen kẽ nhau (LED 1 bật thì LED 2 tắt và ngược lại)?
 
+## Bài tập MQTT
