@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="notif"></p>
+    <p id="nhietdo"></p>
+    <p id="do_am"></p>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+<script>
+    // Tạo một client
+    var client = new Paho.MQTT.Client('broker.emqx.io', 8083, 'client-web-1');
+
+    client.onMessageArrived = onMessageArrived;
+
+    client.onConnectionLost = function(responseObject){
+        if(responseObject.error !== 0){
+            console.log("Ket noi that bai" + responseObject.errorMessage);
+        }
+    }
+
+    client.connect({
+        onSuccess: function() {
+            console.log("Ket noi thanh cong broker.");
+            document.getElementById('notif').innerText = "Ket noi thanh cong";
+
+            // Đăng ký chủ đề
+            client.subscribe('FIT2008/info');
+
+            // Gui tin nhan xac nhan
+            message = new Paho.MQTT.Message("Website đã kết nối thành công");
+            message.destinationName = "FIT2008/info";
+            client.send(message);
+        },
+        onFailure: function(e) {
+            console.log("Ket noi that bai: " + e.errorMessage);
+        }
+    });
+
+    function onMessageArrived(message){
+        console.log("Text: " + message.payloadString);
+        try {
+            var data = JSON.parse(message.payloadString);
+            document.getElementById("nhietdo").innerHTML = "Nhiệt dộ: " + data.nhietdo + "°C";
+            document.getElementById("do_am").innerHTML = "Độ ẩm: " + data.do_am + "%";
+        } catch (e){
+            console.error("Loi: ", e);
+        }
+    }
+</script>
+</html>

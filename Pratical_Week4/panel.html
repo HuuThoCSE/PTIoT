@@ -15,6 +15,7 @@
     var client = new Paho.MQTT.Client("broker.emqx.io", Number(8083), "client2");
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
+    
     client.connect({
         onSuccess: onConnect,
         onFailure: function(e) {
