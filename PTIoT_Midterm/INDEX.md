@@ -49,6 +49,8 @@ void loop() {
 ```
 
 # MQTT
+- Link: [https://mqttx.app/web-client](https://mqttx.app/web-client)
+
 MQTTX nó vẫn sử dụng được port của web
 
 ## Tạo mã ngẫu nhiên
