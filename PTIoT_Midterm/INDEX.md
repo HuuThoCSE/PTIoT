@@ -37,7 +37,7 @@ void loop() {
         Serial.println("Failed to read from DHT sensor!");
         return;
     }
-    
+
     //Thực hiện tính trung bình
     // Cập nhật mảng và số lượng đọc hợp lệ
     if (!isnan(temperatures[readIndex])) {
