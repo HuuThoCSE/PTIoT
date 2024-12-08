@@ -10,8 +10,8 @@ Chân công từ resistor (điện trở) đi vào (chân nâu) đi ra (chân v�
 Chân tín hiệu: 4, 5, 18, 19
 
 ## LCD
-- SDA (Chân 21)
-- SCL (Chân 22)
+- SDA (Chân 21 - ESP32)
+- SCL (Chân 22 - ESP32)
 
 # MQTT
 MQTTX nó vẫn sử dụng được port của web
